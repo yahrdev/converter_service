@@ -1,0 +1,79 @@
+#post:
+tags:
+  - Conversion
+summary: Convert a file to a different format
+description: |
+  Accepts metadata about an already uploaded file, located in the shared input directory,
+  and converts it to the specified target extension. Returns a path to the converted file.
+operationId: convert_file
+consumes:
+  - application/json
+produces:
+  - application/json
+parameters:
+  - in: body
+    name: data
+    required: true
+    schema:
+      type: object
+      required:
+        - filepath
+        - output_filename
+        - original_extension
+        - target_extension
+      properties:
+        filepath:
+          type: string
+          description: Full relative path to the input file in the shared input directory
+          example: "tmp/input/abc123.mp4"
+        output_filename:
+          type: string
+          description: Filename to use when saving the output file
+          example: "abc123"
+        original_extension:
+          type: string
+          description: Extension of the original input file
+          example: "mp4"
+        target_extension:
+          type: string
+          description: Desired output format
+          example: "wav"
+responses:
+  200:
+    description: File was successfully converted
+    schema:
+      type: string
+      example: "/files/abc123.wav"
+  400:
+    description: |
+      Bad Request — input data is invalid or required fields are missing.
+      Possible error codes:
+      - VALIDATION_ERROR: One or more required fields are missing or empty.
+      - FILE_WRONG_TYPE: 	The file {path} is not a supported media file.
+    schema:
+      $ref: '#/definitions/Message'
+  422:
+    description: |
+      Unprocessable Entity — the conversion is not possible.
+      Possible error codes:
+      - UNSUPPORTED_EXTENSION: 	Unsupported extension: {value}. Supported: {supported}.
+      - WRONG_CONVERSION: 	No convertor for {from_ext} → {to_ext}.
+      - EXTENSION_MISMATCH: 	Extracted extension from filepath ({ext}) does not equal to the specified '{expected}'.
+      - INVALID_FILE_PATH: Invalid file path {path}. Make sure it includes a valid filename and extension (e.g., .mp4).
+    schema:
+      $ref: '#/definitions/Message'
+  404:
+    description: |
+      Not Found — the input file could not be located.
+      Possible error codes:
+      - FILE_NOT_FOUND_PATH: 	The file was not found at the path {path}.
+      - ROUTE_NOT_FOUND: The requested URL was not found on the server.
+    schema:
+      $ref: '#/definitions/Message'
+  500:
+    description: |
+      Internal Server Error — something went wrong while serving the file.
+      Possible error code:
+      - INTERNAL_ERROR
+    schema:
+      $ref: '#/definitions/Message'

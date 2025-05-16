@@ -1,0 +1,44 @@
+# Virtual environments
+**/venv/
+**/env/
+**/.venv/
+**/TranscribeVenv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# IDE settings (VS Code, PyCharm, etc.)
+**/.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Test artifacts (optional)
+*.pytest_cache/
+htmlcov/
+
+# Docker and environment files
+*.env
+.env
+*.env.*
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+**/tmp/
+**/tools/
+**/files/
+
+
+**/tasks.txt
+

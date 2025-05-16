@@ -1,0 +1,41 @@
+#get:
+tags:
+  - Files
+summary: Download converted file
+description: Returns a converted file by filename if it exists
+operationId: serve_file
+produces:
+  - application/json
+parameters:
+  - in: path
+    name: filename
+    required: true
+    type: string
+    description: Name of the file to download
+    example: abc123.wav
+responses:
+  200:
+    description: |
+      File successfully returned.
+      This is a binary audio file. You can play or download it in the response.
+    content:
+      audio/wav:
+        schema:
+          type: string
+          format: binary
+  404:
+    description: |
+      File not found.
+      Possible error code:
+      - ROUTE_NOT_FOUND: The requested URL was not found on the server.
+    schema:
+      $ref: '#/definitions/Message'
+  500:
+    description: |
+      Internal Server Error — something went wrong while serving the file.
+      Possible error code:
+      - INTERNAL_ERROR
+    schema:
+      $ref: '#/definitions/Message'
+
+
