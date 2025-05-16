@@ -17,23 +17,6 @@ It uses a clean and simple architecture, so the code is easy to read and extend.
 
 ---
 
-## Project structure
-
-converter_service/
-├── app/ # Main application logic
-│ ├── api/ # Routers, schemas, handlers
-│ ├── core/ # Core logic: convertors, file managers
-│ ├── services/ # Utilities like logging
-│ └── exceptions/ # Error types and handlers
-├── docs/ # Swagger specs
-├── tests/ # Unit and integration tests
-├── config.py # Configuration
-├── requirements.txt # Dependencies
-└── main.py # Entry point
-
-
-
----
 
 ## Running locally
 
