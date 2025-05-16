@@ -1,8 +1,16 @@
 # 🎧 converter_service
 
-**This microservice converts files (like mp4 to wav) and is easy to test, change, and grow**
+**This microservice converts files (for example, from mp4 to wav) and is built with architecture that’s easy to test and extend.**
 
-It uses a clean and simple architecture, so the code is easy to read and extend. Errors are handled clearly, and tests are included. You can use this service alone or inside a bigger project.
+The design follows SOLID principles and separates logic into small, focused parts:
+- File handling
+- Conversion logic
+- API layer
+- Error handling
+  
+This makes it easier to change or add new features, like supporting other file types (e.g., txt → pdf). The service also includes unit and integration tests and returns clear error messages when something goes wrong.
+
+You can use it as a standalone tool or integrate it into a bigger system.
 
 ---
 
